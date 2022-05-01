@@ -213,11 +213,11 @@
       <groupId>org.apache.httpcomponents</groupId>
       <artifactId>httpclient</artifactId>
   <<<<<<< fix/decoding-two-encoded-chars
-      <version>4.5.7</version>
+      <version>4.5.13</version>
   =======
   <<<<<<< fix/issue-14-decoding-two-encoded-chars
   <<<<<<< fix/dependencies-and-travis
-      <version>4.5.7</version>
+      <version>4.5.13</version>
   =======
       <version>4.5.13</version>
   >>>>>>> fix/issue-14-decoding-two-encoded-chars
