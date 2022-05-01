@@ -113,11 +113,11 @@
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
   <<<<<<< fix/decoding-two-encoded-chars
-      <version>2.9.8</version>
+      <version>2.9.10.6</version>
   =======
   <<<<<<< fix/issue-14-decoding-two-encoded-chars
   <<<<<<< fix/dependencies-and-travis
-      <version>2.9.8</version>
+      <version>2.9.10.6</version>
   =======
       <version>2.13.0</version>
   >>>>>>> fix/issue-14-decoding-two-encoded-chars
