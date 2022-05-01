@@ -5,7 +5,20 @@
 /release.properties
 /pom.xml.releaseBackup
 *.iml
+  <<<<<<< fix/decoding-two-encoded-chars
 .idea
 .project
 .classpath
 .settings
+  =======
+  <<<<<<< fix/dependencies-and-travis
+.idea
+  =======
+.idea
+.vscode
+.settings
+.classpath
+.project
+  >>>>>>> fix/issue-14-decoding-two-encoded-chars
+  >>>>>>> main
+ 

@@ -1,7 +1,33 @@
 language: java
 
 jdk:
+  <<<<<<< fix/decoding-two-encoded-chars
   - oraclejdk8
   - oraclejdk11
   - openjdk10
   - openjdk11
+  =======
+  <<<<<<< fix/dependencies-and-travis
+  - oraclejdk8
+  - oraclejdk9
+  - oraclejdk11
+  - openjdk8
+  - openjdk10
+  - openjdk11
+  =======
+  - oraclejdk11
+  - oraclejdk12
+  - oraclejdk13
+  - oraclejdk14
+  - openjdk8
+  - openjdk9
+  - openjdk10
+  - openjdk11
+  - openjdk12
+  - openjdk13
+  - openjdk14
+  
+  >>>>>>> fix/issue-14-decoding-two-encoded-chars
+ 
+  >>>>>>> main
+ 
