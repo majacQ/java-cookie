@@ -104,11 +104,15 @@
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
+  <<<<<<< fix/issue-14-decoding-two-encoded-chars
   <<<<<<< fix/dependencies-and-travis
       <version>2.9.8</version>
   =======
       <version>2.13.0</version>
   >>>>>>> fix/issue-14-decoding-two-encoded-chars
+  =======
+      <version>2.12.6.1</version>
+  >>>>>>> main
     </dependency>
     <dependency>
       <groupId>junit</groupId>
@@ -187,11 +191,15 @@
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
       <artifactId>httpclient</artifactId>
+  <<<<<<< fix/issue-14-decoding-two-encoded-chars
   <<<<<<< fix/dependencies-and-travis
       <version>4.5.7</version>
   =======
       <version>4.5.13</version>
   >>>>>>> fix/issue-14-decoding-two-encoded-chars
+  =======
+      <version>4.5.13</version>
+  >>>>>>> main
       <scope>test</scope>
     </dependency>
     <dependency>

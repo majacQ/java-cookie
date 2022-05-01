@@ -323,11 +323,34 @@ public final class Cookies implements CookiesDefinition {
 	}
 
 	private String decode(String encoded) {
+  <<<<<<< fix/issue-14-decoding-two-encoded-chars
 		// Use URLDecoder to fix https://github.com/js-cookie/java-cookie/issues/14
 		String decoded = encoded;
 		try {
 		  decoded = URLDecoder.decode(encoded, UTF_8);
 		} catch ( UnsupportedEncodingException e) {
+  =======
+		// Decode characters with 3 bytes first, then with 1 byte to fix https://github.com/js-cookie/java-cookie/issues/14
+		return decode( decode( encoded, 3 ), 1 );
+	}
+
+	private String decode( String encoded, Integer bytesPerCharacter ) {
+		String decoded = encoded;
+		Pattern pattern = Pattern.compile( "(%[0-9A-Z]{2}){" + bytesPerCharacter + "}" );
+		Matcher matcher = pattern.matcher( encoded );
+		while ( matcher.find() ) {
+			String encodedChar = matcher.group();
+			String[] encodedBytes = encodedChar.split( "%" );
+			byte[] bytes = new byte[ encodedBytes.length - 1 ];
+			for ( int i = 1; i < encodedBytes.length; i++ ) {
+				String encodedByte = encodedBytes[ i ];
+				bytes[ i - 1 ] = ( byte )Integer.parseInt( encodedByte, 16 );
+			}
+			try {
+				String decodedChar = new String( bytes, UTF_8 );
+				decoded = decoded.replace( encodedChar, decodedChar );
+			} catch ( UnsupportedEncodingException e ) {
+  >>>>>>> main
 				e.printStackTrace();
 		}
 		return decoded;
