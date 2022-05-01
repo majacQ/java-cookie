@@ -147,6 +147,11 @@ public final class Cookies implements CookiesDefinition {
 			header.append( "; HttpOnly" );
 		}
 
+		String sameSite = attributes.sameSite();
+		if ( sameSite != null ) {
+			header.append( "; SameSite=" + sameSite );
+		}
+
 		if ( response.isCommitted() ) {
 			return;
 		}
@@ -302,17 +307,16 @@ public final class Cookies implements CookiesDefinition {
 				String character = new String( Character.toChars( codePoint ) );
 				CharArrayWriter hexSequence = new CharArrayWriter();
 				byte[] bytes = character.getBytes( UTF_8 );
-				for ( int bytesIndex = 0; bytesIndex < bytes.length; bytesIndex++ ) {
-					char left = Character.forDigit( bytes[ bytesIndex ] >> 4 & 0xF, 16 );
-					char right = Character.forDigit( bytes[ bytesIndex ] & 0xF, 16 );
+				for (byte aByte : bytes) {
+					char left = Character.forDigit(aByte >> 4 & 0xF, 16);
+					char right = Character.forDigit(aByte & 0xF, 16);
 					hexSequence
-						.append( '%' )
-						.append( left )
-						.append( right );
+							.append('%')
+							.append(left)
+							.append(right);
 				}
-				String target = character.toString();
 				String sequence = hexSequence.toString().toUpperCase();
-				encoded = encoded.replace( target, sequence );
+				encoded = encoded.replace(character, sequence );
 			} catch ( UnsupportedEncodingException e ) {
 				e.printStackTrace();
 			}
@@ -320,9 +324,14 @@ public final class Cookies implements CookiesDefinition {
 		return encoded;
 	}
 
-	private String decode( String encoded ) {
+	private String decode(String encoded) {
+		// Decode characters with 3 bytes first, then with 1 byte to fix https://github.com/js-cookie/java-cookie/issues/14
+		return decode( decode( encoded, 3 ), 1 );
+	}
+
+	private String decode( String encoded, Integer bytesPerCharacter ) {
 		String decoded = encoded;
-		Pattern pattern = Pattern.compile( "(%[0-9A-Z]{2})+" );
+		Pattern pattern = Pattern.compile( "(%[0-9A-Z]{2}){" + bytesPerCharacter + "}" );
 		Matcher matcher = pattern.matcher( encoded );
 		while ( matcher.find() ) {
 			String encodedChar = matcher.group();
@@ -398,14 +407,13 @@ public final class Cookies implements CookiesDefinition {
 	private Map<String, String> getCookies( String cookieHeader ) {
 		Map<String, String> result = new HashMap<String, String>();
 		String[] cookies = cookieHeader.split( "; " );
-		for ( int i = 0; i < cookies.length; i++ ) {
-			String cookie = cookies[ i ];
-			String encodedName = cookie.split( "=" )[ 0 ];
-			String decodedName = decode( encodedName );
+		for (String cookie : cookies) {
+			String encodedName = cookie.split("=")[0];
+			String decodedName = decode(encodedName);
 
-			String encodedValue = cookie.substring( cookie.indexOf( '=' ) + 1, cookie.length() );
-			String decodedValue = decodeValue( encodedValue, decodedName );
-			result.put( decodedName, decodedValue );
+			String encodedValue = cookie.substring(cookie.indexOf('=') + 1);
+			String decodedValue = decodeValue(encodedValue, decodedName);
+			result.put(decodedName, decodedValue);
 		}
 		return result;
 	}
@@ -416,6 +424,7 @@ public final class Cookies implements CookiesDefinition {
 		private String domain;
 		private Boolean secure;
 		private Boolean httpOnly;
+		private String sameSite;
 
 		private Attributes() {}
 
@@ -473,6 +482,16 @@ public final class Cookies implements CookiesDefinition {
 			return this;
 		}
 
+		@Override
+		String sameSite() {
+			return sameSite;
+		}
+		@Override
+		public Attributes sameSite( String sameSite ) {
+			this.sameSite = sameSite;
+			return this;
+		}
+
 		private Attributes merge( AttributesDefinition reference ) {
 			if ( reference.path() != null ) {
 				path = reference.path();
@@ -488,6 +507,9 @@ public final class Cookies implements CookiesDefinition {
 			}
 			if ( reference.httpOnly() != null ) {
 				httpOnly = reference.httpOnly();
+			}
+			if ( reference.sameSite() != null ) {
+				sameSite = reference.sameSite();
 			}
 			return this;
 		}
