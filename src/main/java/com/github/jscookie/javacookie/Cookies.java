@@ -1,23 +1,21 @@
 package com.github.jscookie.javacookie;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.CharArrayWriter;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 public final class Cookies implements CookiesDefinition {
 	private static String UTF_8 = "UTF-8";
@@ -325,6 +323,13 @@ public final class Cookies implements CookiesDefinition {
 	}
 
 	private String decode(String encoded) {
+  <<<<<<< fix/issue-14-decoding-two-encoded-chars
+		// Use URLDecoder to fix https://github.com/js-cookie/java-cookie/issues/14
+		String decoded = encoded;
+		try {
+		  decoded = URLDecoder.decode(encoded, UTF_8);
+		} catch ( UnsupportedEncodingException e) {
+  =======
 		// Decode characters with 3 bytes first, then with 1 byte to fix https://github.com/js-cookie/java-cookie/issues/14
 		return decode( decode( encoded, 3 ), 1 );
 	}
@@ -345,8 +350,8 @@ public final class Cookies implements CookiesDefinition {
 				String decodedChar = new String( bytes, UTF_8 );
 				decoded = decoded.replace( encodedChar, decodedChar );
 			} catch ( UnsupportedEncodingException e ) {
+  >>>>>>> main
 				e.printStackTrace();
-			}
 		}
 		return decoded;
 	}
