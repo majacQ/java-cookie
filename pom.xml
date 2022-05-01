@@ -74,6 +74,9 @@
       <dependency>
         <groupId>org.jboss.arquillian</groupId>
         <artifactId>arquillian-bom</artifactId>
+  <<<<<<< fix/decoding-two-encoded-chars
+        <version>1.4.1.Final</version>
+  =======
   <<<<<<< fix/dependencies-and-travis
         <version>1.4.1.Final</version>
         <scope>import</scope>
@@ -81,6 +84,7 @@
         <version>1.6.0.Final</version>
         <scope>test</scope>
   >>>>>>> fix/issue-14-decoding-two-encoded-chars
+  >>>>>>> main
         <type>pom</type>
       </dependency>
     </dependencies>
@@ -95,15 +99,22 @@
     <dependency>
       <groupId>joda-time</groupId>
       <artifactId>joda-time</artifactId>
+  <<<<<<< fix/decoding-two-encoded-chars
+      <version>2.10.1</version>
+  =======
   <<<<<<< fix/dependencies-and-travis
       <version>2.10.1</version>
   =======
       <version>2.10.12</version>
   >>>>>>> fix/issue-14-decoding-two-encoded-chars
+  >>>>>>> main
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
+  <<<<<<< fix/decoding-two-encoded-chars
+      <version>2.9.8</version>
+  =======
   <<<<<<< fix/issue-14-decoding-two-encoded-chars
   <<<<<<< fix/dependencies-and-travis
       <version>2.9.8</version>
@@ -112,6 +123,7 @@
   >>>>>>> fix/issue-14-decoding-two-encoded-chars
   =======
       <version>2.12.6.1</version>
+  >>>>>>> main
   >>>>>>> main
     </dependency>
     <dependency>
@@ -151,6 +163,9 @@
     <dependency>
       <groupId>org.jboss.arquillian.junit</groupId>
       <artifactId>arquillian-junit-container</artifactId>
+  <<<<<<< fix/decoding-two-encoded-chars
+      <version>1.4.1.Final</version>
+  =======
   <<<<<<< fix/dependencies-and-travis
       <version>1.4.1.Final</version>
   =======
@@ -176,21 +191,30 @@
   =======
       <version>3.1.4</version>
   >>>>>>> fix/issue-14-decoding-two-encoded-chars
+  >>>>>>> main
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.jboss.shrinkwrap.resolver</groupId>
+  <<<<<<< fix/decoding-two-encoded-chars
+      <artifactId>shrinkwrap-resolver-impl-maven</artifactId>
+      <version>3.1.3</version>
+  =======
       <artifactId>shrinkwrap-resolver-spi</artifactId>
   <<<<<<< fix/dependencies-and-travis
       <version>3.1.3</version>
   =======
       <version>3.1.4</version>
   >>>>>>> fix/issue-14-decoding-two-encoded-chars
+  >>>>>>> main
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
       <artifactId>httpclient</artifactId>
+  <<<<<<< fix/decoding-two-encoded-chars
+      <version>4.5.7</version>
+  =======
   <<<<<<< fix/issue-14-decoding-two-encoded-chars
   <<<<<<< fix/dependencies-and-travis
       <version>4.5.7</version>
@@ -200,16 +224,28 @@
   =======
       <version>4.5.13</version>
   >>>>>>> main
+  >>>>>>> main
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
       <artifactId>fluent-hc</artifactId>
+  <<<<<<< fix/decoding-two-encoded-chars
+      <version>4.5.7</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.as</groupId>
+      <artifactId>jboss-as-dist</artifactId>
+      <version>7.5.7.Final-redhat-3</version>
+      <type>pom</type>
+  =======
   <<<<<<< fix/dependencies-and-travis
       <version>4.5.7</version>
   =======
       <version>4.5.13</version>
   >>>>>>> fix/issue-14-decoding-two-encoded-chars
+  >>>>>>> main
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -222,6 +258,11 @@
       <build>
         <plugins>
           <plugin>
+  <<<<<<< fix/decoding-two-encoded-chars
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>failsafe-maven-plugin</artifactId>
+            <version>2.4.3-alpha-1</version>
+  =======
             <artifactId>maven-dependency-plugin</artifactId>
             <executions>
               <execution>
@@ -249,6 +290,7 @@
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-failsafe-plugin</artifactId>
             <version>2.22.2</version>
+  >>>>>>> main
             <executions>
               <execution>
                 <goals>
@@ -261,11 +303,15 @@
           <plugin>
             <groupId>com.github.eirslett</groupId>
             <artifactId>frontend-maven-plugin</artifactId>
+  <<<<<<< fix/decoding-two-encoded-chars
+            <version>1.5</version>
+  =======
   <<<<<<< fix/dependencies-and-travis
             <version>1.5</version>
   =======
             <version>1.11.2</version>
   >>>>>>> fix/issue-14-decoding-two-encoded-chars
+  >>>>>>> main
             <executions>
               <execution>
                 <id>install node and npm</id>
@@ -273,12 +319,17 @@
                   <goal>install-node-and-npm</goal>
                 </goals>
                 <configuration>
+  <<<<<<< fix/decoding-two-encoded-chars
+                  <nodeVersion>v11.10.0</nodeVersion>
+                  <npmVersion>6.8.0</npmVersion>
+  =======
   <<<<<<< fix/dependencies-and-travis
                   <nodeVersion>v11.10.0</nodeVersion>
                   <npmVersion>6.8.0</npmVersion>
   =======
                   <nodeVersion>v15.6.0</nodeVersion>
   >>>>>>> fix/issue-14-decoding-two-encoded-chars
+  >>>>>>> main
                 </configuration>
               </execution>
               <execution>
@@ -293,6 +344,8 @@
                   <goal>bower</goal>
                 </goals>
               </execution>
+  <<<<<<< fix/decoding-two-encoded-chars
+  =======
               <execution>
                 <id>npm test</id>
                 <goals>
@@ -302,6 +355,7 @@
                   <arguments>test</arguments>
                 </configuration>
               </execution>
+  >>>>>>> main
             </executions>
           </plugin>
         </plugins>
@@ -324,11 +378,15 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
+  <<<<<<< fix/decoding-two-encoded-chars
+            <version>3.0.1</version>
+  =======
   <<<<<<< fix/dependencies-and-travis
             <version>3.0.1</version>
   =======
             <version>3.2.0</version>
   >>>>>>> fix/issue-14-decoding-two-encoded-chars
+  >>>>>>> main
             <executions>
               <execution>
                 <id>attach-javadocs</id>
@@ -341,11 +399,15 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-source-plugin</artifactId>
+  <<<<<<< fix/decoding-two-encoded-chars
+            <version>3.0.1</version>
+  =======
   <<<<<<< fix/dependencies-and-travis
             <version>3.0.1</version>
   =======
             <version>3.2.1</version>
   >>>>>>> fix/issue-14-decoding-two-encoded-chars
+  >>>>>>> main
             <executions>
               <execution>
                 <id>attach-sources</id>
