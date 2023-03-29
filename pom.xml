@@ -113,16 +113,16 @@
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
   <<<<<<< fix/decoding-two-encoded-chars
-      <version>2.12.6.1</version>
+      <version>2.13.0.redhat-00001</version>
   =======
   <<<<<<< fix/issue-14-decoding-two-encoded-chars
   <<<<<<< fix/dependencies-and-travis
-      <version>2.12.6.1</version>
+      <version>2.13.0.redhat-00001</version>
   =======
       <version>2.13.0</version>
   >>>>>>> fix/issue-14-decoding-two-encoded-chars
   =======
-      <version>2.12.6.1</version>
+      <version>2.13.0.redhat-00001</version>
   >>>>>>> main
   >>>>>>> main
     </dependency>
